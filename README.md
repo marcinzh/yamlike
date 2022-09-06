@@ -5,7 +5,7 @@ YAML-like list syntax for Scala 3, abusing experimental fewerBraces extension.
 
 ## Examples
 
-scala```
+```scala
 val data =
   tree:
     - "foo"
@@ -15,4 +15,4 @@ val data =
     - "qux"
 ```
 
-More in [examples](./tree/main/modules/examples/src/main/scala/examples).
+More in [examples](./modules/examples/src/main/scala/examples).
