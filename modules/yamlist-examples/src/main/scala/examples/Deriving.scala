@@ -1,12 +1,13 @@
 package examples
-import yamlike._
+import yamlist._
 
 
 object Deriving:
   def run() =
     build.show()
 
-  enum Tree[T] derives Yamlike:
+
+  enum Tree[T] derives Yamlement:
     case Leaf(leaf: T)
     case Branch(trees: Vector[Tree[T]])
 
@@ -20,11 +21,15 @@ object Deriving:
             for x <- xs do loop(s"$indent  ", x)
       loop("", this)
 
-  def tree[T](y: Yamlist[Tree[T]]): Tree[T] = Tree.Branch(y.unwrap)
+
+  object Syntax:
+    def tree[T](y: Yamlist[Tree[T]]): Tree[T] = Tree.Branch(y.unwrap)
+    given Yamlement.Into[String, Tree[String]] = Yamlement.Into(Tree.Leaf(_))
+    given Yamlement[String] = Yamlement.derived
+
 
   def build: Tree[String] =
-    given Yamlike.Into[String, Tree[String]] = Yamlike.Into(Tree.Leaf(_))
-    given Yamlike[String] = Yamlike.derived
+    import Syntax.{given, _}
 
     tree:
       - "a"
