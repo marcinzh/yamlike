@@ -1,5 +1,5 @@
 package examples
-import yamlike._
+import yamlist._
 
 
 object Main:
@@ -7,3 +7,5 @@ object Main:
     Preexisting.run()
     println()
     Deriving.run()
+    println()
+    TreeOfStrings.run()

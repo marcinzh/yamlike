@@ -10,6 +10,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 val Deps = {
   object deps {
+    val zio = "dev.zio" %% "zio" % "1.0.16"
   }
   deps
 }
@@ -19,20 +20,35 @@ lazy val root = project
   .settings(name := "yamlike-root")
   .settings(sourcesInBase := false)
   .settings(dontPublishMe: _*)
-  .aggregate(yamlike, examples)
+  .aggregate(
+    yamlist,
+    yamlist_examples,
+    yamlayer,
+  )
 
-lazy val yamlike = project
-  .in(file("modules/yamlike"))
-  .settings(name := "yamlike")
+lazy val yamlist = project
+  .in(file("modules/yamlist"))
+  .settings(name := "yamlist")
 
-lazy val examples = project
-  .in(file("modules/examples"))
-  .settings(name := "examples")
-  .settings(scalaVersion := "3.2.1-RC1-bin-20220905-c93098b-NIGHTLY")
-  .settings(scalacOptions += "-language:experimental.fewerBraces")
-  .dependsOn(yamlike)
+lazy val yamlist_examples = project
+  .in(file("modules/yamlist-examples"))
+  .settings(name := "yamlist-examples")
+  .settings(dontPublishMe: _*)
+  .settings(fewerBraces: _*)
+  .dependsOn(yamlist)
+
+lazy val yamlayer = project
+  .in(file("modules/yamlayer"))
+  .settings(name := "yamlayer")
+  .settings(crossScalaVersions := Seq(scalaVersion.value, "2.13.8"))
+  .settings(libraryDependencies += Deps.zio)
 
 //=================================================
+
+lazy val fewerBraces = Seq(
+  scalaVersion := "3.2.2-RC1-bin-20220910-ac6cd1c-NIGHTLY",
+  scalacOptions += "-language:experimental.fewerBraces",
+)
 
 lazy val dontPublishMe = Seq(
   publish := {},

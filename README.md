@@ -7,12 +7,12 @@ YAML-like list syntax for Scala 3, abusing experimental fewerBraces extension.
 
 ```scala
 val data =
-  tree:
-    - "foo"
-    - tree:
-    	- "bar"
-    	- "baz"
-    - "qux"
+  foo:
+    - bar
+    - qux:
+    	- baz
 ```
 
 More in [examples](./modules/examples/src/main/scala/examples).
+
+
