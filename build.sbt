@@ -1,6 +1,6 @@
 ThisBuild / organization := "io.github.marcinzh"
-ThisBuild / version := "0.1.0"
-ThisBuild / scalaVersion := "3.2.0"
+ThisBuild / version := "0.2.0"
+ThisBuild / scalaVersion := "3.3.1"
 ThisBuild / scalacOptions ++= Seq(
   "-deprecation",
   "-feature",
@@ -10,7 +10,7 @@ ThisBuild / scalacOptions ++= Seq(
 
 val Deps = {
   object deps {
-    val zio = "dev.zio" %% "zio" % "1.0.16"
+    val zio = "dev.zio" %% "zio" % "1.0.18"
   }
   deps
 }
@@ -34,21 +34,15 @@ lazy val yamlist_examples = project
   .in(file("modules/yamlist-examples"))
   .settings(name := "yamlist-examples")
   .settings(dontPublishMe: _*)
-  .settings(fewerBraces: _*)
   .dependsOn(yamlist)
 
 lazy val yamlayer = project
   .in(file("modules/yamlayer"))
   .settings(name := "yamlayer")
-  .settings(crossScalaVersions := Seq(scalaVersion.value, "2.13.8"))
+  .settings(crossScalaVersions := Seq(scalaVersion.value, "2.13.12"))
   .settings(libraryDependencies += Deps.zio)
 
 //=================================================
-
-lazy val fewerBraces = Seq(
-  scalaVersion := "3.2.2-RC1-bin-20220910-ac6cd1c-NIGHTLY",
-  scalacOptions += "-language:experimental.fewerBraces",
-)
 
 lazy val dontPublishMe = Seq(
   publish := {},
