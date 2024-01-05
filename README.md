@@ -1,9 +1,14 @@
+
+
+
 # Yamlike
 
 Two tiny DSLs providing YAML-like list syntax. Inspired by fewerBraces extension for Scala 3.
 
 
 ## 1. yamlist
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.marcinzh/yamlist_3/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.marcinzh/yamlist_3)
 
 Provides a tiny, auto-derivable typeclass for list elements. Together with fewerBraces 
 extension, allows creating custom DSLs with YAML-like list syntax:
@@ -19,11 +24,13 @@ val data =
 Usage in [examples](./modules/yamlist-examples/src/main/scala/examples).
 
 ```Scala
-libraryDependencies += "io.github.marcinzh" %% "yamlist" % "0.1.0"
+libraryDependencies += "io.github.marcinzh" %% "yamlist" % "0.2.0"
 ```
 
 
 ## 2. yamlayer
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.marcinzh/yamlayer_3/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.marcinzh/yamlayer_3)
 
 Augmentation of ZIO 1.x.
 
@@ -57,5 +64,5 @@ someZIOProgram.provideLayers:
 Cross compiled for Scala 2.13.x and 3.x.
 
 ```Scala
-libraryDependencies += "io.github.marcinzh" %% "yamlayer" % "0.1.0"
+libraryDependencies += "io.github.marcinzh" %% "yamlayer" % "0.2.0"
 ```
